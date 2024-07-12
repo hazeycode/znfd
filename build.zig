@@ -24,7 +24,7 @@ pub fn build(b: *std.Build) !void {
     const options = b.addOptions();
     options.addOption(bool, "native_char_encoding", use_native_char_encoding orelse false);
 
-    const root_module = b.addModule("root", .{ .root_source_file = .{ .path = "src/nfd.zig" } });
+    const root_module = b.addModule("root", .{ .root_source_file = b.path("src/nfd.zig") });
     root_module.addOptions("build_options", options);
 
     const lib = b.addStaticLibrary(.{
@@ -57,8 +57,8 @@ pub fn build(b: *std.Build) !void {
                     });
                 },
                 .portal => {
-                    lib.addIncludePath(.{ .path = "/usr/include/dbus-1.0" });
-                    lib.addIncludePath(.{ .path = try std.fs.path.join(b.allocator, &.{
+                    lib.addIncludePath(.{ .cwd_relative = "/usr/include/dbus-1.0" });
+                    lib.addIncludePath(.{ .cwd_relative = try std.fs.path.join(b.allocator, &.{
                         "/usr/lib",
                         try target.result.linuxTriple(b.allocator),
                         "dbus-1.0/include",
