@@ -29,6 +29,7 @@ pub fn build(b: *std.Build) !void {
         .target = target,
         .optimize = optimize,
         .link_libc = true,
+        .link_libcpp = true,
     });
     root_module.addOptions("build_options", options);
 
