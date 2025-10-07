@@ -1,21 +1,8 @@
 .{
     .name = .znfd,
     .fingerprint = 0x1ef710aefc638da1,
-
-    // This is a [Semantic Version](https://semver.org/).
-    .version = "0.1.0",
-
-    // This field is optional.
-    // This is currently advisory only; Zig does not yet do anything
-    // with this value.
-    .minimum_zig_version = "0.14.0",
-
-    // Specifies the set of files and directories that are included in this package.
-    // Only files and directories listed here are included in the `hash` that
-    // is computed for this package.
-    // Paths are relative to the build root. Use the empty string (`""`) to refer to
-    // the build root itself.
-    // A directory listed here means that all files within, recursively, are included.
+    .version = "0.2.0-dev",
+    .minimum_zig_version = "0.15.1",
     .paths = .{
         "build.zig",
         "build.zig.zon",

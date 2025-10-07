@@ -24,13 +24,18 @@ pub fn build(b: *std.Build) !void {
     const options = b.addOptions();
     options.addOption(bool, "native_char_encoding", use_native_char_encoding orelse false);
 
-    const root_module = b.addModule("root", .{ .root_source_file = b.path("src/nfd.zig") });
-    root_module.addOptions("build_options", options);
-
-    const lib = b.addStaticLibrary(.{
-        .name = "nfd",
+    const root_module = b.addModule("root", .{
+        .root_source_file = b.path("src/nfd.zig"),
         .target = target,
         .optimize = optimize,
+        .link_libc = true,
+    });
+    root_module.addOptions("build_options", options);
+
+    const lib = b.addLibrary(.{
+        .name = "nfd",
+        .linkage = .static,
+        .root_module = root_module,
     });
     const cflags = &.{};
     switch (target.result.os.tag) {
@@ -74,7 +79,6 @@ pub fn build(b: *std.Build) !void {
             @panic("Unsupported target");
         },
     }
-    lib.linkLibC();
 
     b.installArtifact(lib);
 }
