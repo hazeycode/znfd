@@ -1,5 +1,6 @@
 .{
-    .name = "znfd",
+    .name = .znfd,
+    .fingerprint = 0x1ef710aefc638da1,
 
     // This is a [Semantic Version](https://semver.org/).
     .version = "0.1.0",
@@ -7,7 +8,7 @@
     // This field is optional.
     // This is currently advisory only; Zig does not yet do anything
     // with this value.
-    .minimum_zig_version = "0.13.0",
+    .minimum_zig_version = "0.14.0",
 
     // Specifies the set of files and directories that are included in this package.
     // Only files and directories listed here are included in the `hash` that

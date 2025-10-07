@@ -83,7 +83,6 @@ fn isLinuxDesktopLike(tag: std.Target.Os.Tag) bool {
     return switch (tag) {
         .linux,
         .freebsd,
-        .kfreebsd,
         .openbsd,
         .dragonfly,
         => true,
