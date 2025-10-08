@@ -58,11 +58,11 @@ extern fn NFD_FreePathU8([*:0]nfdu8char_t) void;
 pub fn init() Result {
     return @enumFromInt(NFD_Init());
 }
-extern fn NFD_Init() callconv(.C) nfdresult_t;
+extern fn NFD_Init() callconv(.c) nfdresult_t;
 
 /// call this to de-initialize NFD, if NFD_Init returned NFD_OKAY
 pub const quit = NFD_Quit;
-extern fn NFD_Quit() callconv(.C) void;
+extern fn NFD_Quit() callconv(.c) void;
 
 /// single file open dialog
 /// It is the caller's responsibility to free `out_path` via freePath() if this function returns
@@ -86,13 +86,13 @@ extern fn NFD_OpenDialogN(
     filterList: ?[*]const nfdnfilteritem_t,
     filterCount: nfdfiltersize_t,
     defaultPath: ?[*:0]const nfdnchar_t,
-) callconv(.C) nfdresult_t;
+) callconv(.c) nfdresult_t;
 extern fn NFD_OpenDialogU8(
     outPath: ?*[*:0]nfdu8char_t,
     filterList: ?[*]const nfdu8filteritem_t,
     filterCount: nfdfiltersize_t,
     defaultPath: ?[*:0]const nfdu8char_t,
-) callconv(.C) nfdresult_t;
+) callconv(.c) nfdresult_t;
 
 /// save dialog
 /// It is the caller's responsibility to free `out_path` via `freePath`
@@ -119,14 +119,14 @@ extern fn NFD_SaveDialogN(
     filterCount: nfdfiltersize_t,
     defaultPath: ?[*:0]const nfdnchar_t,
     defaultName: ?[*:0]const nfdnchar_t,
-) callconv(.C) nfdresult_t;
+) callconv(.c) nfdresult_t;
 extern fn NFD_SaveDialogU8(
     outPath: ?*[*:0]nfdu8char_t,
     filterList: ?[*]const nfdu8filteritem_t,
     filterCount: nfdfiltersize_t,
     defaultPath: ?[*:0]const nfdu8char_t,
     defaultName: ?[*:0]const nfdu8char_t,
-) callconv(.C) nfdresult_t;
+) callconv(.c) nfdresult_t;
 
 /// Get last error -- set when nfdresult_t returns NFD_ERROR
 /// Returns the last error that was set, or null if there is no error.
